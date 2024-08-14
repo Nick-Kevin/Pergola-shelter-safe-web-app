@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   // State to manage the navbar's visibility
@@ -10,17 +11,8 @@ const Navbar = () => {
     setNav(!nav);
   };
 
-  // Array containing navigation items
-  const navItems = [
-    { id: 1, text: 'Accueil' },
-    { id: 2, text: 'Commande vocale' },
-    { id: 3, text: 'Commande mannuelle' },
-    { id: 4, text: 'Caméra' },
-    { id: 5, text: 'Volets' },
-  ];
-
   return (
-    <div className='bg-black flex justify-between items-center h-24 mx-auto px-4 text-white'>
+    <div className='bg-black fixed w-full flex justify-between items-center h-24 mx-auto px-4 text-white'>
       {/* Logo */}
       <h1 className='w-full xl:w-5/12 text-3xl font-bold text-[#00df9a]'>Pergola.</h1>
 
@@ -29,12 +21,12 @@ const Navbar = () => {
           <li
             className='p-4 hover:bg-[#00df9a] rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
           >
-            Accueil
+            <Link to="/Pergola-shelter-safe-web-app">Accueil</Link>
           </li>
           <li
             className='p-4 hover:bg-[#00df9a] rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
           >
-            Commande vocale
+            <Link to="/Pergola-shelter-safe-web-app/voice-recognition">Commande vocale</Link>
           </li>
           <li
             className='p-4 hover:bg-[#00df9a] rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
@@ -73,12 +65,12 @@ const Navbar = () => {
           <li
             className='p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600'
           >
-            Accueil
+            <Link to="//Pergola-shelter-safe-web-app">Accueil</Link>
           </li>
           <li
             className='p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600'
           >
-            Commande vocale
+            <Link to="/Pergola-shelter-safe-web-app/voice-recognition">Commande vocale</Link>
           </li>
           <li
             className='p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600'
