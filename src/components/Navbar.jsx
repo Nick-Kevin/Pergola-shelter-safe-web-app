@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='bg-[#060606] fixed w-full flex justify-between items-center h-24 mx-auto px-4 text-white'>
+    <div className='bg-[#060606] fixed z-50 w-full flex justify-between items-center h-24 mx-auto px-4 text-white'>
       {/* Logo */}
       <h1 className='w-full xl:w-5/12 text-3xl font-bold text-[#00df9a]'>Pergola.</h1>
 
