@@ -65,7 +65,7 @@ const Navbar = () => {
           <li
             className='p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600'
           >
-            <Link to="//Pergola-shelter-safe-web-app">Accueil</Link>
+            <Link to="/Pergola-shelter-safe-web-app">Accueil</Link>
           </li>
           <li
             className='p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600'
