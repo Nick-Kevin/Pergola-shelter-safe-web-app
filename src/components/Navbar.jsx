@@ -38,6 +38,11 @@ const Navbar = () => {
           >
             Volets
           </li>
+          <li
+            className='px-4 hover:bg-[#00df9a] rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
+          >
+            Connexion
+          </li>
       </ul>
 
       {/* Mobile Navigation Icon */}

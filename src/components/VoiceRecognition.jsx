@@ -48,15 +48,15 @@ const VoiceRecognition = () => {
   };
 
   const handleVoiceCommand = (command) => {
-    if (command.toLowerCase().includes("open pergola")) {
-      sendCommandToESP8266("open");
-    } else if (command.toLowerCase().includes("close pergola")) {
-      sendCommandToESP8266("close");
+    if (command.toLowerCase().includes("open")) {
+      sendCommandToESP8266("on");
+    } else if (command.toLowerCase().includes("close")) {
+      sendCommandToESP8266("off");
     }
   };
 
   const sendCommandToESP8266 = (action) => {
-    fetch(`http://<ESP8266_IP_ADDRESS>/control?state=${action}`)
+    fetch(`http://192.168.10.105/led/${action}`)
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((error) => console.error("Error:", error));
