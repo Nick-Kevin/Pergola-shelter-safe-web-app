@@ -12,34 +12,29 @@ const Navbar = () => {
   };
 
   return (
-    <div className='bg-black fixed w-full flex justify-between items-center h-24 mx-auto px-4 text-white'>
+    <div className='bg-[#060606] fixed w-full flex justify-between items-center h-24 mx-auto px-4 text-white'>
       {/* Logo */}
       <h1 className='w-full xl:w-5/12 text-3xl font-bold text-[#00df9a]'>Pergola.</h1>
 
       {/* Desktop Navigation */}
       <ul className='hidden md:flex xl:pr-24'>
           <li
-            className='p-4 hover:bg-[#00df9a] rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
+            className='px-4 hover:bg-[#00df9a] hover:text-black rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
           >
-            <Link to="/Pergola-shelter-safe-web-app">Accueil</Link>
+            <Link to="/Pergola-shelter-safe-web-app" className='text-white hover:text-black inline-block h-full'>Accueil</Link>
           </li>
           <li
-            className='p-4 hover:bg-[#00df9a] rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
+            className='px-4 hover:bg-[#00df9a] hover:text-black rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
           >
-            <Link to="/Pergola-shelter-safe-web-app/voice-recognition">Commande vocale</Link>
+            <Link to="/Pergola-shelter-safe-web-app/voice-recognition" className='text-white hover:text-black'>Commande</Link>
           </li>
           <li
-            className='p-4 hover:bg-[#00df9a] rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
-          >
-            Commande mannuelle
-          </li>
-          <li
-            className='p-4 hover:bg-[#00df9a] rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
+            className='px-4 hover:bg-[#00df9a] rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
           >
             Caméra
           </li>
           <li
-            className='p-4 hover:bg-[#00df9a] rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
+            className='px-4 hover:bg-[#00df9a] rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
           >
             Volets
           </li>
@@ -70,12 +65,7 @@ const Navbar = () => {
           <li
             className='p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600'
           >
-            <Link to="/Pergola-shelter-safe-web-app/voice-recognition">Commande vocale</Link>
-          </li>
-          <li
-            className='p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600'
-          >
-            Commande mannuelle
+            <Link to="/Pergola-shelter-safe-web-app/voice-recognition">Commande</Link>
           </li>
           <li
             className='p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600'

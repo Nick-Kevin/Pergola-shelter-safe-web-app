@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import play from '../assets/command-page/play-svgrepo-com.svg'
+import voiceCapture from '../assets/command-page/voice-fill-svgrepo-com.svg'
 
 const VoiceRecognition = () => {
   const [text, setText] = useState("");
@@ -62,10 +64,11 @@ const VoiceRecognition = () => {
 
   return (
     <div>
-      <button onClick={isListening ? stopListening : startListening}>
-        {isListening ? "Stop Listening" : "Start Listening"}
+      <button onClick={isListening ? stopListening : startListening} className="flex text-white bg-[#060606] w-48 gap-3 justify-center items-center">
+        <img src={isListening ? voiceCapture : play} alt="icon" className="w-5" />
+        <span>{isListening ? "Stop Listening" : "Start Listening"}</span>
       </button>
-      <p>{text}</p>
+      <p className="my-3">{text}</p>
     </div>
   );
 };
