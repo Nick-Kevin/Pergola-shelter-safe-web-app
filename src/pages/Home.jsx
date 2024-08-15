@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar"
 import illustration1 from "../assets/home-page/colors-green-gradient-spiral.png"
 import illustration2 from "../assets/home-page/colors-yellow-star.png"
 import illustration3 from "../assets/home-page/doodle-green-scribble.png"
@@ -10,10 +10,13 @@ import volets from "../assets/home-page/features/icons8-fermeture-des-volets-50.
 import manualControl from "../assets/home-page/features/icons8-télécommande-50.png"
 import Footer from "../components/Footer";
 
+
 function Home() {
+
+  
     return (
         <div>
-            <Navbar/>
+            <Navbar isLoggedIn = {false}/>
             <section className="pt-48 relative h-screen flex flex-col items-center">
                 <h1 className="text-green-500 text-3xl sm:text-5xl font-bold mb-10">Pergola shelter safe</h1>
                 <h2 className="text-base sm:text-xl w-8/12 text-justify sm:text-center">Assurez-vous que votre espace extérieur reste confortable et votre pergola abri sûr grâce à nos systèmes de commande innovants, conçus pour s'adapter à toutes les conditions météorologiques.</h2>

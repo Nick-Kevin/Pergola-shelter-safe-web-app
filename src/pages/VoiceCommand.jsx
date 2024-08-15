@@ -1,11 +1,43 @@
 import VoiceRecognition from "../components/VoiceRecognition";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function VoiceCommand() {
+
+    const navigate = useNavigate();
+    const [isLoggedIn, setIsloggedIn] = useState(false)
+
+    useEffect(()=>{
+        const verifyAuthentification = async () =>{
+            const token = localStorage.getItem('authToken');
+
+            if(!token){
+                navigate('/Pergola-shelter-safe-web-app/login');
+                return;
+            }
+
+            try{
+                const response = await axios.get('http://localhost:5000/protected',{
+                    headers:{
+                        Authorization:`${token}`
+                    }
+                });
+                console.log(response.data)
+                setIsloggedIn(true)
+                
+            } catch(error){
+                console.log("Error Authentification !",error)
+                navigate('/Pergola-shelter-safe-web-app/login');
+            }
+        }
+        verifyAuthentification()
+    })
     return (
         <div>
-            <Navbar/>
+            <Navbar isLoggedIn = {isLoggedIn}/>
             <section className="lg:h-screen flex flex-col pt-36 pb-16 justify-around items-center gap-16 lg:gap-0">
                 <h2 className="text-2xl font-bold">Commande vocale</h2>
                 <p className="w-10/12 lg:w-8/12 text-justify">

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import {FiUser} from 'react-icons/fi'
 
-const Navbar = () => {
+const Navbar = (isLoggedIn =false) => {
   // State to manage the navbar's visibility
   const [nav, setNav] = useState(false);
 
@@ -33,8 +34,16 @@ const Navbar = () => {
           >
             <Link to="/Pergola-shelter-safe-web-app/volets" className={`text-white hover:text-black ${(window.location.pathname === "/Pergola-shelter-safe-web-app/volets") ? "underline" : ""}`}>Volets</Link>
           </li>
-      </ul>
-      <Link to="#" className='hidden rounded md:block text-white hover:text-black hover:bg-white text-sm border py-2 px-5 mr-24 '>Se déconnecter</Link>
+      </ul>     
+      {isLoggedIn? <Link to="/Pergola-shelter-safe-web-app/profile" className='hidden rounded md:flex gap-3 md:items-center text-white hover:text-black hover:bg-white text-sm border py-2 px-5 mr-24'>
+      <FiUser className="mr-2 align-middle"/>
+        Déconnection
+           
+           </Link>:
+           <Link to="/Pergola-shelter-safe-web-app/login" className='hidden rounded md:flex gap-3 md:items-center text-white hover:text-black hover:bg-white text-sm border py-2 px-5 mr-24'>
+            <FiUser className="mr-2 align-middle"/>
+            Connexion 
+            </Link>}
 
       {/* Mobile Navigation Icon */}
       <div onClick={handleNav} className='block md:hidden'>
