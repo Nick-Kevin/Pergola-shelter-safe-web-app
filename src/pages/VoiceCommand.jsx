@@ -20,7 +20,7 @@ function VoiceCommand() {
                 </p>
                 <VoiceRecognition/>
             </section>
-            <hr className="bg-black h-0.5" />
+            <hr className="bg-[#00df9a] h-0.5" />
             <section className="lg:h-screen flex flex-col pt-10 pb-16 justify-around items-center gap-16 lg:gap-0">
                 <h2 className="text-2xl font-bold">Commande manuelle</h2>
                 <p className="w-10/12 lg:w-8/12 text-justify">
