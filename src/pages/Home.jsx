@@ -26,7 +26,7 @@ function Home() {
             </section>
             <section id="features" className="mb-5 sm:mb-0 sm:py-32">
                 <h1 className="text-2xl md:text-4xl">Les fonctionnalités</h1>
-                <div className="flex flex-col sm:flex-row justify-between items-center sm:items-stretch gap-10 sm:gap-0 md:px-28 mt-10 sm:mt-20">
+                <div className="flex flex-col sm:flex-row sm:flex-wrap justify-between items-center sm:items-stretch gap-10 sm:gap-0 md:px-28 mt-10 sm:mt-20">
                     <div className="w-72 sm:w-80 rounded-lg border border-[#06060630] shadow-lg p-8">
                         <div className="flex justify-center">
                             <img src={microphone} alt="microphone" className="w-10" />
