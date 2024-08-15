@@ -16,10 +16,10 @@ function Logout({email}) {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-6 rounded shadow-md w-full max-w-sm text-center">
         <h2 className="text-2xl font-bold mb-4">Déconnexion</h2>
-        <p className="mb-4">{email}</p>
+        <p className="font-medium text-lg mb-4">{email}</p>
         <button
           onClick={handleLogout}
-          className="bg-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-red-600"
+          className="bg-red-500 text-sm text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-red-600"
         >
            Se déconnecter
         </button>

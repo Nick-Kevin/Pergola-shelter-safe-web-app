@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import {FiUser} from 'react-icons/fi'
 
 const Navbar = (isLoggedIn =false) => {
   // State to manage the navbar's visibility
@@ -39,10 +40,15 @@ const Navbar = (isLoggedIn =false) => {
             Volets
           </li>
           <li
-            className='px-4 hover:bg-[#00df9a] rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
+            className=' flex items-center px-4 hover:bg-[#00df9a] rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black flex'
           >
-            {isLoggedIn? <Link to="/Pergola-shelter-safe-web-app/profile" className='text-white hover:text-black'>Déconnection</Link>:
-            <Link to="/Pergola-shelter-safe-web-app/login" className='text-white hover:text-black'> Connexion</Link>}
+            <FiUser className="mr-2 align-middle"/>
+            {isLoggedIn? <Link to="/Pergola-shelter-safe-web-app/profile" className='text-white hover:text-black mr-2'>Déconnection
+           
+            </Link>:
+            <Link to="/Pergola-shelter-safe-web-app/login" className='text-white hover:text-black mr-2'>
+             Connexion 
+             </Link>}
           </li>
       </ul>
 
