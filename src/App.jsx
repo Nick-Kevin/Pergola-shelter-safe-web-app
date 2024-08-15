@@ -5,7 +5,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Home from './pages/Home';
 import VoiceCommand from './pages/VoiceCommand';
-import Logout from './components/Logout';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
           />
           <Route path="/Pergola-shelter-safe-web-app/login" element={<Login />} />
           <Route path="/Pergola-shelter-safe-web-app/register" element={<Register />} />
-          <Route path="/Pergola-shelter-safe-web-app/logout" element={<Logout/>} />
+          <Route path="/Pergola-shelter-safe-web-app/profile" element={<Profile/>} />
         </Routes>        
       </Router>      
     </>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = (isLoggedIn =false) => {
   // State to manage the navbar's visibility
   const [nav, setNav] = useState(false);
 
@@ -41,7 +41,8 @@ const Navbar = () => {
           <li
             className='px-4 hover:bg-[#00df9a] rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
           >
-            Connexion
+            {isLoggedIn? <Link to="/Pergola-shelter-safe-web-app/profile" className='text-white hover:text-black'>Déconnection</Link>:
+            <Link to="/Pergola-shelter-safe-web-app/login" className='text-white hover:text-black'> Connexion</Link>}
           </li>
       </ul>
 
