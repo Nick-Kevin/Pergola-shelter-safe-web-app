@@ -6,6 +6,7 @@ import Register from './components/Register';
 import Home from './pages/Home';
 import VoiceCommand from './pages/VoiceCommand';
 import Volets from './pages/Volets';
+import Weather from './pages/Weather';
 import Profile from './components/Profile';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/Pergola-shelter-safe-web-app/volets"
             element={<Volets />}
           />
+          <Route path="/Pergola-shelter-safe-web-app/weather" element={<Weather />} />
           <Route path="/Pergola-shelter-safe-web-app/login" element={<Login />} />
           <Route path="/Pergola-shelter-safe-web-app/register" element={<Register />} />
           <Route path="/Pergola-shelter-safe-web-app/profile" element={<Profile/>} />

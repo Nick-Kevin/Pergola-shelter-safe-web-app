@@ -1,7 +1,62 @@
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
+import WeatherForm from '../components/WeatherForm';
+import WeatherDisplay from '../components/WeatherDisplay';
+import axios from 'axios';
 
 function Volets() {
+    const [weatherData, setWeatherData] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const apiKey = "560d9258d943c960b6308ff5d1ed4526";
+            const options = {
+                method: 'GET',
+                url: `http://api.weatherstack.com/current?access_key=${apiKey}`,
+                params: {
+                  query: "New Delhi",
+                }
+            };
+    
+            try {
+                const response = await axios.request(options);
+                console.log(response);
+    
+                const data = response.data;
+                if (data.error) {
+                    console.error('Error fetching weather data:', data.error.info);
+                } else {
+                    setWeatherData(data.current || data.forecast);
+                }
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+            }
+        };
+    
+        fetchData();
+    }, []);
+    
+
+  const fetchWeather = async (location, forecast) => {
+    const endpoint = forecast ? 'forecast' : 'current';
+    const apiKey = "fa7c528cfbc74c5ebab91625241908";
+    const url = `http://api.weatherstack.com/current?access_key=${apiKey}&query=London`;
+
+    try {
+      const response = await axios.get(url);
+      const data = response.data;
+
+      if (data.error) {
+        console.error('Error fetching weather data:', data.error.info);
+      } else {
+        setWeatherData(data.current || data.forecast);
+      }
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+    }
+  };
+
     return (
         <div>
             <Navbar />
@@ -33,6 +88,10 @@ function Volets() {
                     </ul>
                 </div>
             </section>
+            <div>
+                <h1>Weather App</h1>
+                <WeatherDisplay weatherData={weatherData} />
+            </div>
             <Footer />
         </div>
     )
