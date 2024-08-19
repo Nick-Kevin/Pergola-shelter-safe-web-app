@@ -88,10 +88,6 @@ function Volets() {
                     </ul>
                 </div>
             </section>
-            <div>
-                <h1>Weather App</h1>
-                <WeatherDisplay weatherData={weatherData} />
-            </div>
             <Footer />
         </div>
     )
