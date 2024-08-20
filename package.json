@@ -12,6 +12,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tensorflow-models/speech-commands": "^0.5.4",
+    "@tensorflow/tfjs": "^4.20.0",
     "axios": "^1.7.4",
     "flowbite": "^2.5.1",
     "flowbite-react": "^0.10.1",

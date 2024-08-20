@@ -8,6 +8,7 @@ import VoiceCommand from './pages/VoiceCommand';
 import Volets from './pages/Volets';
 import Weather from './pages/Weather';
 import Profile from './components/Profile';
+import SpeechRecognition from './pages/SpeechRecognition';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/Pergola-shelter-safe-web-app/login" element={<Login />} />
           <Route path="/Pergola-shelter-safe-web-app/register" element={<Register />} />
           <Route path="/Pergola-shelter-safe-web-app/profile" element={<Profile/>} />
+          <Route path="/Pergola-shelter-safe-web-app/speech" element={<SpeechRecognition/>} />
         </Routes>        
       </Router>      
     </>
