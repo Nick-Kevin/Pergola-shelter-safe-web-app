@@ -58,7 +58,7 @@ const handleVoiceCommand = (command) => {
   };
 
   const sendCommandToESP8266 = (action) => {
-    fetch(`http://192.168.10.105/led/${action}`)
+    fetch(`http://192.168.126.101/led/${action}`)
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((error) => console.error("Error:", error));
