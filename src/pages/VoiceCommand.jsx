@@ -1,4 +1,5 @@
 import VoiceRecognition from "../components/VoiceRecognition";
+import TimeCommand from "./TimeCommand";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router";
@@ -126,6 +127,17 @@ function VoiceCommand() {
                     </ul>
                 </div>
             </section>
+            <hr className="bg-[#00df9a] h-0.5" />
+            <section className="lg:h-screen flex flex-col pt-36 pb-16 justify-around items-center gap-16 lg:gap-0">
+                <h2 className="text-2xl font-bold">Commande par temps</h2>
+                <p className="w-10/12 lg:w-8/12 text-justify">
+                    La commande par le temps permet aux utilisateurs de contrôler
+                    l'ouverture et la fermeture des toits du pergola en foncton du temps.
+                    Les utilisateurs entrent l'heure d'ouverture et de fermeture manuellement et
+                    le pergola va automatiquement ouvrir et fermer en fonction de ces dernières.
+                </p>
+                <TimeCommand/>
+            </section>    
             <Footer/>         
         </div>
     )
