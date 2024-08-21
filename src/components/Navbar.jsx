@@ -1,11 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import {FiUser} from 'react-icons/fi'
+import {FiUser} from 'react-icons/fi';
+import axios from 'axios';
 
 const Navbar = (isLoggedIn =false) => {
   // State to manage the navbar's visibility
   const [nav, setNav] = useState(false);
+  const [isLogged, setIslogged] = useState(false)
+
+  useEffect(()=>{
+        const verifyAuthentification = async () =>{
+            const token = localStorage.getItem('authToken');
+            try{
+                const response = await axios.get('http://localhost:5000/protected',{
+                    headers:{
+                        Authorization:`${token}`
+                    }
+                });
+                console.log(response.data)
+                setIslogged(true)
+                
+            } catch(error){
+                console.log("Error Authentification !",error)
+            }
+        }
+        verifyAuthentification()
+    })
 
   // Toggle function to handle the navbar's display
   const handleNav = () => {
@@ -40,9 +61,9 @@ const Navbar = (isLoggedIn =false) => {
             <Link to="/Pergola-shelter-safe-web-app/weather" className={`text-white hover:text-black ${(window.location.pathname === "/Pergola-shelter-safe-web-app/weather") ? "underline" : ""}`}>Temps</Link>
           </li>
       </ul>     
-      {isLoggedIn? <Link to="/Pergola-shelter-safe-web-app/profile" className='hidden rounded md:flex gap-3 md:items-center text-white hover:text-black hover:bg-white text-sm border py-2 px-5 mr-24'>
+      {isLogged? <Link to="/Pergola-shelter-safe-web-app/profile" className='hidden rounded md:flex gap-3 md:items-center text-white hover:text-black hover:bg-white text-sm border py-2 px-5 mr-24'>
       <FiUser className="mr-2 align-middle"/>
-        Déconnection
+        Se déconnecter
            
            </Link>:
            <Link to="/Pergola-shelter-safe-web-app/login" className='hidden rounded md:flex gap-3 md:items-center text-white hover:text-black hover:bg-white text-sm border py-2 px-5 mr-24'>
@@ -88,7 +109,11 @@ const Navbar = (isLoggedIn =false) => {
             <Link to="/Pergola-shelter-safe-web-app/weather" className={`text-white ${(window.location.pathname === "/Pergola-shelter-safe-web-app/weather") ? "underline" : ""}`}>Temps</Link>
           </li>
           <li>
-            <Link to="#" className='rounded text-black bg-white text-sm border mt-10 py-2 px-5'>Se déconnecter</Link>
+            {isLogged ?
+              <Link to="/Pergola-shelter-safe-web-app/profile" className='rounded text-black bg-white text-sm border mt-10 py-2 px-5'>Se déconnecter</Link>
+            :
+              <Link to="/Pergola-shelter-safe-web-app/login" className='rounded text-black bg-white text-sm border mt-10 py-2 px-5'>Connexion</Link>
+            }
           </li>
       </ul>
     </div>
