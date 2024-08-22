@@ -5,11 +5,13 @@ import Sun from "../assets/weather/icons8-soleil-48.png"
 const WeatherDisplay = ({ weatherData, city }) => {
   const [cloudCoverState, setCloudCoverState] = useState(0)
   const [humidityState, setHumidityState] = useState(0)
-  if (!weatherData) {
-    return <div>No data to display</div>;
-  }
 
-  const { temperature, observation_time, is_day, wind_speed, humidity, cloudcover, precip, weather_descriptions, pressure } = weatherData;
+  useEffect(() => {
+    if (weatherData) {
+      setCloudCoverState(weatherData.cloudcover);
+      setHumidityState(weatherData.humidity);
+    }
+  }, [weatherData]);  
 
   useEffect(() => {
     setCloudCoverState(cloudcover)
@@ -23,6 +25,12 @@ const WeatherDisplay = ({ weatherData, city }) => {
       sendCommandToESP8266('off')
     }
   }, [cloudCoverState, humidityState])
+
+  if (!weatherData) {
+    return <div>No data to display</div>;
+  }
+
+  const { temperature, observation_time, is_day, wind_speed, humidity, cloudcover, precip, weather_descriptions, pressure } = weatherData;
 
   const sendCommandToESP8266 = (action) => {
     fetch(`http://192.168.10.106/led/${action}`)
