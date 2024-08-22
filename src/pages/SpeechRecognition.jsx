@@ -38,15 +38,32 @@ function argMax(arr){
 }
 
 // 3. Listen for Actions
-const recognizeCommands = async () =>{
-  console.log('Listening for commands')
-  model.listen(result=>{
-    // console.log(labels[argMax(Object.values(result.scores))])
-    console.log(result.spectrogram)
-    setAction(labels[argMax(Object.values(result.scores))])
-  }, {includeSpectrogram:true, probabilityThreshold:0.9})
-  setTimeout(()=>model.stopListening(), 10e3)
-}
+let isListening = false;
+
+const recognizeCommands = async () => {
+  console.log('Listening for commands');
+  
+  try {
+    if (!isListening) {
+      isListening = true;
+      model.listen(result => {
+        console.log(result.spectrogram);
+        setAction(labels[argMax(Object.values(result.scores))]);
+      }, { includeSpectrogram: true, probabilityThreshold: 0.9 });
+      
+      setTimeout(() => {
+        if (isListening) {
+          model.stopListening();
+          isListening = false;
+          console.log('Stopped listening');
+        }
+      }, 10e3);
+    }
+  } catch (error) {
+    console.error('Error during command recognition:', error);
+  }
+};
+
 
 const handleVoiceCommand = (command) => {
     console.log(command);
@@ -58,7 +75,7 @@ const handleVoiceCommand = (command) => {
   };
 
   const sendCommandToESP8266 = (action) => {
-    fetch(`http://192.168.126.101/led/${action}`)
+    fetch(`http://192.168.10.106/led/${action}`)
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((error) => console.error("Error:", error));

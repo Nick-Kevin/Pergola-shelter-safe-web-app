@@ -25,6 +25,7 @@ function Weather() {
                 if (data.error) {
                     console.error('Error fetching weather data:', data.error.info);
                 } else {
+                    console.log(data)
                     setWeatherData(data.current || data.forecast);
                 }
             } catch (error) {
