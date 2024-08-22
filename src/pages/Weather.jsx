@@ -7,6 +7,8 @@ import Nature from "../assets/weather/nature.jpg"
 
 function Weather() {
     const [weatherData, setWeatherData] = useState(null);
+    const [cloudCoverState, setCloudCoverState] = useState(0);
+    const [humidityState, setHumidityState] = useState(0);
     const apiKey = "560d9258d943c960b6308ff5d1ed4526";
     const options = {
         method: 'GET',
@@ -25,8 +27,9 @@ function Weather() {
                 if (data.error) {
                     console.error('Error fetching weather data:', data.error.info);
                 } else {
-                    console.log(data)
                     setWeatherData(data.current || data.forecast);
+                    setCloudCoverState(data.current.cloudcover)
+                    setHumidityState(data.current.humidity)
                 }
             } catch (error) {
                 console.error('Error fetching weather data:', error);
@@ -35,6 +38,25 @@ function Weather() {
     
         fetchData();
     }, []);
+
+    useEffect(() => {
+        handleWeather(cloudCoverState, humidityState)
+    }, [cloudCoverState, humidityState])
+
+    const handleWeather = (cloud, hmdt) => {
+        if (cloud >= 75 && hmdt >= 80) {
+            sendCommandToESP8266("off")
+        } else {
+            sendCommandToESP8266("on")
+        }
+    }
+
+    const sendCommandToESP8266 = (action) => {
+        fetch(`http://192.168.10.106/led/${action}`)
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.error("Error:", error));
+      }
 
     return (
         <div>
