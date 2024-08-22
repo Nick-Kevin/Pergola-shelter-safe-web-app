@@ -1,13 +1,35 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Moon from "../assets/weather/icons8-lune-48.png"
 import Sun from "../assets/weather/icons8-soleil-48.png"
 
 const WeatherDisplay = ({ weatherData, city }) => {
+  const [cloudCoverState, setCloudCoverState] = useState(0)
+  const [humidityState, setHumidityState] = useState(0)
   if (!weatherData) {
     return <div>No data to display</div>;
   }
 
   const { temperature, observation_time, is_day, wind_speed, humidity, cloudcover, precip, weather_descriptions, pressure } = weatherData;
+
+  useEffect(() => {
+    setCloudCoverState(cloudcover)
+    setHumidityState(humidity)
+  }, [])
+
+  useEffect(() => {
+    if (cloudCoverState >= 75 && humidityState >= 80) {
+      sendCommandToESP8266('on')
+    } else {
+      sendCommandToESP8266('off')
+    }
+  }, [cloudCoverState, humidityState])
+
+  const sendCommandToESP8266 = (action) => {
+    fetch(`http://192.168.10.106/led/${action}`)
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error("Error:", error));
+  }
 
   return (
     <div className='shadow-2xl py-8 px-20 rounded-xl'>
