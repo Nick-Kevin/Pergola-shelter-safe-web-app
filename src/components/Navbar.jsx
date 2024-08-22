@@ -43,7 +43,7 @@ const Navbar = (isLoggedIn =false) => {
           <li
             className='px-4 hover:bg-[#00df9a] hover:text-black rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
           >
-            <Link to="/Pergola-shelter-safe-web-app" className={`text-white hover:text-black inline-block h-full ${(window.location.pathname !== "/Pergola-shelter-safe-web-app/voice-recognition" && window.location.pathname !== "/Pergola-shelter-safe-web-app/volets") ? "underline" : ""}`}>Accueil</Link>
+            <Link to="/Pergola-shelter-safe-web-app" className={`text-white hover:text-black inline-block h-full ${(window.location.pathname !== "/Pergola-shelter-safe-web-app/voice-recognition" && window.location.pathname !== "/Pergola-shelter-safe-web-app/volets" && window.location.pathname !== "/Pergola-shelter-safe-web-app/weather") ? "underline" : ""}`}>Accueil</Link>
           </li>
           <li
             className='px-4 hover:bg-[#00df9a] hover:text-black rounded-xl md:text-sm m-2 cursor-pointer duration-300 hover:text-black'
@@ -91,7 +91,7 @@ const Navbar = (isLoggedIn =false) => {
           <li
             className='p-4 border-b hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600'
           >
-            <Link to="/Pergola-shelter-safe-web-app" className={`text-white ${(window.location.pathname !== "/Pergola-shelter-safe-web-app/voice-recognition" && window.location.pathname !== "/Pergola-shelter-safe-web-app/volets") ? "underline" : ""}`}>Accueil</Link>
+            <Link to="/Pergola-shelter-safe-web-app" className={`text-white ${(window.location.pathname !== "/Pergola-shelter-safe-web-app/voice-recognition" && window.location.pathname !== "/Pergola-shelter-safe-web-app/volets" && window.location.pathname !== "/Pergola-shelter-safe-web-app/weather") ? "underline" : ""}`}>Accueil</Link>
           </li>
           <li
             className='p-4 border-b hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600'
@@ -99,7 +99,7 @@ const Navbar = (isLoggedIn =false) => {
             <Link to="/Pergola-shelter-safe-web-app/voice-recognition" className={`text-white ${(window.location.pathname === "/Pergola-shelter-safe-web-app/voice-recognition") ? "underline" : ""}`}>Commandes</Link>
           </li>
           <li
-            className='p-4 mb-10 border-b hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600'
+            className='p-4 border-b hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600'
           >
             <Link to="/Pergola-shelter-safe-web-app/volets" className={`text-white ${(window.location.pathname === "/Pergola-shelter-safe-web-app/volets") ? "underline" : ""}`}>Volets</Link>
           </li>
