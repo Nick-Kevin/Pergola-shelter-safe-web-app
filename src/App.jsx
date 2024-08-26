@@ -9,6 +9,7 @@ import Volets from './pages/Volets';
 import Weather from './pages/Weather';
 import Profile from './components/Profile';
 import SpeechRecognition from './pages/SpeechRecognition'
+import VoiceRecording from './pages/VoiceRecording';
 import Test from './pages/Test';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             element={<Volets />}
           />
           <Route path="/Pergola-shelter-safe-web-app/weather" element={<Weather />} />
+          <Route path="/Pergola-shelter-safe-web-app/voice-recording" element={<VoiceRecording />} />
           <Route path="/Pergola-shelter-safe-web-app/test" element={<Test />} />
           <Route path="/Pergola-shelter-safe-web-app/login" element={<Login />} />
           <Route path="/Pergola-shelter-safe-web-app/register" element={<Register />} />
