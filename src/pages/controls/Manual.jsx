@@ -7,6 +7,13 @@ function Manual () {
     const [isLoggedIn, setIsloggedIn] = useState(false)
     const [isChecked, setIsChecked] = useState(false)
 
+    const handleManualCommand = (action) => {
+        fetch(`http://192.168.10.115/led/${action}`)
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.error("Error", error))
+    }
+
     useEffect(()=>{
         const verifyAuthentification = async () =>{
             const token = localStorage.getItem('authToken');

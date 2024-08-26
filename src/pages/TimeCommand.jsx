@@ -12,7 +12,7 @@ const TimeCommand = ()=>{
         console.log(turnOnTime, turnOffTime)
         e.preventDefault();
         async function sendData(){
-            await axios.post('http://192.168.10.106/setTimes',{turnOnTime, turnOffTime}
+            await axios.post('http://192.168.10.115/setTimes',{turnOnTime, turnOffTime}
             ).then((response)=>{
                 console.log(response);
             }).catch((error)=>{
