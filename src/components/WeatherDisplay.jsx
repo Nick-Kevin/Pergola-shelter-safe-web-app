@@ -10,7 +10,7 @@ const WeatherDisplay = ({ weatherData, city }) => {
   const { temperature, observation_time, is_day, wind_speed, humidity, cloudcover, precip, weather_descriptions, pressure } = weatherData;
 
   return (
-    <div className='shadow-2xl py-8 px-20 bg-[#dfdfdf90] rounded-3xl'>
+    <div className='shadow-2xl mt-16 py-8 px-20 bg-[#dfdfdf90] rounded-3xl'>
       <h2 className='text-3xl font-bold'>{ city ? city : '' }</h2>
       <p className='mt-2'>{observation_time}</p>
       <div className='flex justify-center items-center my-5'>
