@@ -4,41 +4,47 @@ import Navbar from "../../components/Navbar"
 
 function Manual () {
     const navigate = useNavigate();
+    const [identification, setIdentification] = useState("0")
     const [isLoggedIn, setIsloggedIn] = useState(false)
     const [isChecked, setIsChecked] = useState(false)
 
     const handleManualCommand = (action) => {
-        fetch(`http://192.168.10.115/led/${action}`)
+        if (action === true) {
+            action = "left"
+        } else if (action === false) {
+            action = "close"
+        }
+        fetch(`http://192.168.10.115/servo/${action}`)
         .then((response) => response.json())
         .then((data) => console.log(data))
         .catch((error) => console.error("Error", error))
     }
 
-    useEffect(()=>{
-        const verifyAuthentification = async () =>{
-            const token = localStorage.getItem('authToken');
+    // useEffect(()=>{
+    //     const verifyAuthentification = async () =>{
+    //         const token = localStorage.getItem('authToken');
 
-            if(!token){
-                navigate('/Pergola-shelter-safe-web-app/login');
-                return;
-            }
+    //         if(!token){
+    //             navigate('/Pergola-shelter-safe-web-app/login');
+    //             return;
+    //         }
 
-            try{
-                const response = await axios.get('http://localhost:5000/protected',{
-                    headers:{
-                        Authorization:`${token}`
-                    }
-                });
-                console.log(response.data)
-                setIsloggedIn(true)
+    //         try{
+    //             const response = await axios.get('http://localhost:5000/protected',{
+    //                 headers:{
+    //                     Authorization:`${token}`
+    //                 }
+    //             });
+    //             console.log(response.data)
+    //             setIsloggedIn(true)
                 
-            } catch(error){
-                console.log("Error Authentification !",error)
-                navigate('/Pergola-shelter-safe-web-app/login');
-            }
-        }
-        verifyAuthentification()
-    })
+    //         } catch(error){
+    //             console.log("Error Authentification !",error)
+    //             navigate('/Pergola-shelter-safe-web-app/login');
+    //         }
+    //     }
+    //     verifyAuthentification()
+    // })
 
     return (
         <>
@@ -64,7 +70,7 @@ function Manual () {
                         <p className="text-xs">Vous pouvez ouvrir(angle maximale) et fermer les lames de la pergola en cochant le bouton.</p>
                     </div>
                     <label className="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" checked ={isChecked} className="sr-only peer" onChange={(e)=>{handleVoiceCommand(e.target.checked); setIsChecked(!isChecked)}} />
+                        <input type="checkbox" checked ={isChecked} className="sr-only peer" onChange={(e)=>{handleManualCommand(e.target.checked); setIsChecked(!isChecked)}} />
                         <div className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                     </label>
                 </div>
@@ -72,45 +78,33 @@ function Manual () {
                     <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">Identification</h3>
                     <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                            <div className="flex items-center ps-3">
-                                <input id="horizontal-list-radio-license" type="radio" value="" name="list-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                <label for="horizontal-list-radio-license" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">-90deg </label>
-                            </div>
-                        </li>
-                        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                             <div className="flex justify-around items-center ps-3">
-                                <input id="horizontal-list-radio-id" type="radio" value="" name="list-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                <input id="horizontal-list-radio-id" type="radio" value="right" onChange={(e) => { setIdentification(e.target.value); handleManualCommand(e.target.value); }} name="list-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
                                 <label for="horizontal-list-radio-id" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">-60deg</label>
                             </div>
                         </li>
                         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                             <div className="flex justify-around items-center ps-3">
-                                <input id="horizontal-list-radio-military" type="radio" value="" name="list-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                <input id="horizontal-list-radio-military" type="radio" value="-30" onChange={(e) => { setIdentification(e.target.value); handleManualCommand(e.target.value); }} name="list-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
                                 <label for="horizontal-list-radio-military" className="w-full py-3 ms-2  text-sm font-medium text-gray-900 dark:text-gray-300">-30deg</label>
                             </div>
                         </li>
                         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                             <div className="flex items-center ps-3">
-                                <input id="horizontal-list-radio-passport" type="radio" value="" defaultChecked name="list-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                <input id="horizontal-list-radio-passport" type="radio" value="close" onChange={(e) => { setIdentification(e.target.value); handleManualCommand(e.target.value); }} defaultChecked name="list-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
                                 <label for="horizontal-list-radio-passport" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">0deg</label>
                             </div>
                         </li>
                         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                             <div className="flex items-center ps-3">
-                                <input id="horizontal-list-radio-passport" type="radio" value="" name="list-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                <input id="horizontal-list-radio-passport" type="radio" value="30" onChange={(e) => { setIdentification(e.target.value); handleManualCommand(e.target.value); }} name="list-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
                                 <label for="horizontal-list-radio-passport" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">30deg</label>
                             </div>
                         </li>
                         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                             <div className="flex items-center ps-3">
-                                <input id="horizontal-list-radio-passport" type="radio" value="" name="list-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                <input id="horizontal-list-radio-passport" type="radio" value="left" onChange={(e) => { setIdentification(e.target.value); handleManualCommand(e.target.value); }} name="list-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
                                 <label for="horizontal-list-radio-passport" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">60deg</label>
-                            </div>
-                        </li>
-                        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                            <div className="flex items-center ps-3">
-                                <input id="horizontal-list-radio-passport" type="radio" value="" name="list-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                <label for="horizontal-list-radio-passport" className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">90deg</label>
                             </div>
                         </li>
                     </ul>

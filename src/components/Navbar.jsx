@@ -10,24 +10,24 @@ const Navbar = (isLoggedIn =false) => {
   const [nav, setNav] = useState(false);
   const [isLogged, setIslogged] = useState(false)
 
-  useEffect(()=>{
-        const verifyAuthentification = async () =>{
-            const token = localStorage.getItem('authToken');
-            try{
-                const response = await axios.get('http://localhost:5000/protected',{
-                    headers:{
-                        Authorization:`${token}`
-                    }
-                });
-                console.log(response.data)
-                setIslogged(true)
+  // useEffect(()=>{
+  //       const verifyAuthentification = async () =>{
+  //           const token = localStorage.getItem('authToken');
+  //           try{
+  //               const response = await axios.get('http://localhost:5000/protected',{
+  //                   headers:{
+  //                       Authorization:`${token}`
+  //                   }
+  //               });
+  //               console.log(response.data)
+  //               setIslogged(true)
                 
-            } catch(error){
-                console.log("Error Authentification !",error)
-            }
-        }
-        verifyAuthentification()
-    })
+  //           } catch(error){
+  //               console.log("Error Authentification !",error)
+  //           }
+  //       }
+  //       verifyAuthentification()
+  //   })
 
   // Toggle function to handle the navbar's display
   const handleNav = () => {
