@@ -157,7 +157,9 @@ function VoiceCommand() {
                     Les utilisateurs entrent l'heure d'ouverture et de fermeture manuellement et
                     le pergola va automatiquement ouvrir et fermer en fonction de ces dernières.
                 </p>
+              
                 <TimeCommand/>
+                
             </section>    
             <Footer/>         
         </div>
